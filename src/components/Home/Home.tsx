@@ -5,9 +5,6 @@ import { ChangeEvent, FormEvent } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import types from '../../types/types'
 
-// interface HomeComponents{
-//     album :string
-// }
 
 
 const Home = ({history , location} : RouteComponentProps  ) => {
@@ -43,13 +40,13 @@ const Home = ({history , location} : RouteComponentProps  ) => {
     <>
     <div className={styles.header}>
         
-        <Form>
+        <Form className={styles.inputFields} >
         <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>Enter city</Form.Label>
             <Form.Control value={city} placeholder="City" />
         </Form.Group>
-        <Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Label>Select days showing</Form.Label>
+        <Form.Group controlId="exampleForm.ControlSelect1" className="mt-4">
+            <Form.Label>Select showing days</Form.Label>
             <Form.Control as="select" value= {daySelected}>
             <option>1</option>
             <option>2</option>
