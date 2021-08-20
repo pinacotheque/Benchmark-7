@@ -13,6 +13,7 @@ import types from '../../types/types'
 const Home = ({history , location} : RouteComponentProps  ) => {
     
     const [city, setCity] = useState('')
+    const [daySelected, setdaySelected] = useState(0)
     const [music, setMusic] = useState<types[]>([])
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,14 +23,13 @@ const Home = ({history , location} : RouteComponentProps  ) => {
             e.preventDefault()
             console.log('search')
             try {
-                let response = await fetch (`https://striveschool-api.herokuapp.com/api/deezer/search?q=`)
+                let response = await fetch (`http://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=${daySelected}&appid=${process.env.WEATHER_API_KEY}`)
                 let data = await response.json()
-                let musics = await data.data
-                console.log('musics',musics)
+                let weather = await data.data
+                console.log('musics',weather)
                 if(response.ok){
-                    setMusic(musics)
-                 
-                    await console.log('state music',music)
+                    setMusic(weather)
+                    await console.log('state weather',weather)
                 } else{
                     console.log('fetch error')
                 }
@@ -47,6 +47,16 @@ const Home = ({history , location} : RouteComponentProps  ) => {
         <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>Enter city</Form.Label>
             <Form.Control value={city} placeholder="City" />
+        </Form.Group>
+        <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Label>Select days showing</Form.Label>
+            <Form.Control as="select" value= {daySelected}>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            </Form.Control>
         </Form.Group>
         
         </Form>
