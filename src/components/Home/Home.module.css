@@ -1,0 +1,12 @@
+
+
+.header{
+        background-image: url(../../assets/sky.png);
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding-top: 20px;
+        height: 400px;
+
+}
